@@ -1,5 +1,5 @@
 import { Context } from "npm:hono";
-import { verifyToken } from "./auth.tsx";
+import { verifyToken } from "./auth.ts";
 
 export async function authMiddleware(c: Context, next: () => Promise<void>) {
   console.log("🔐 Middleware de autenticação");

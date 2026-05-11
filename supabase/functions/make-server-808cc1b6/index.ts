@@ -1,9 +1,9 @@
 import { Hono } from "npm:hono";
 import { cors } from "npm:hono/cors";
 import { logger } from "npm:hono/logger";
-import * as kv from "./kv_store.tsx";
-import { hashPassword, verifyPassword, generateToken } from "./auth.tsx";
-import { authMiddleware } from "./middleware.tsx";
+import * as kv from "./kv_store.ts";
+import { hashPassword, verifyPassword, generateToken } from "./auth.ts";
+import { authMiddleware } from "./middleware.ts";
 
 const app = new Hono();
 
