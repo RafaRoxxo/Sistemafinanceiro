@@ -125,34 +125,34 @@ export function DashboardTab() {
   const mesSelecionadoPosterior = mesSelecionado > mesAtual;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header com mês selecionado */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
             {formatMonth(mesSelecionado)}
           </h2>
           {mesAtualInfo && (
-            <p className="text-sm text-blue-600 font-medium mt-1">Mês atual</p>
+            <p className="text-xs sm:text-sm text-blue-600 font-medium mt-1">Mês atual</p>
           )}
           {mesSelecionadoAnterior && (
-            <p className="text-sm text-gray-500 mt-1">Visualizando mês anterior</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Visualizando mês anterior</p>
           )}
           {mesSelecionadoPosterior && (
-            <p className="text-sm text-gray-500 mt-1">Visualizando mês seguinte</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Visualizando mês seguinte</p>
           )}
         </div>
       </div>
 
       {/* Cards principais */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total de Rendas</CardTitle>
-            <TrendingUp className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-xs sm:text-sm font-medium">Total de Rendas</CardTitle>
+            <TrendingUp className="h-4 w-4 text-green-600 flex-shrink-0" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-lg sm:text-2xl font-bold text-green-600">
               {formatCurrency(data?.total_renda || 0)}
             </div>
           </CardContent>
@@ -160,11 +160,11 @@ export function DashboardTab() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total de Gastos</CardTitle>
-            <TrendingDown className="h-4 w-4 text-red-600" />
+            <CardTitle className="text-xs sm:text-sm font-medium">Total de Gastos</CardTitle>
+            <TrendingDown className="h-4 w-4 text-red-600 flex-shrink-0" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-red-600">
+            <div className="text-lg sm:text-2xl font-bold text-red-600">
               {formatCurrency(data?.total_gastos || 0)}
             </div>
           </CardContent>
@@ -172,11 +172,11 @@ export function DashboardTab() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Poupança do Mês</CardTitle>
-            <PiggyBank className="h-4 w-4 text-purple-600" />
+            <CardTitle className="text-xs sm:text-sm font-medium">Poupança do Mês</CardTitle>
+            <PiggyBank className="h-4 w-4 text-purple-600 flex-shrink-0" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-lg sm:text-2xl font-bold text-purple-600">
               {formatCurrency(data?.valor_guardado_mensal || 0)}
             </div>
             {data?.meta_guardado_mensal > 0 && (
@@ -204,12 +204,12 @@ export function DashboardTab() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Saldo</CardTitle>
-            <Wallet className="h-4 w-4 text-blue-600" />
+            <CardTitle className="text-xs sm:text-sm font-medium">Saldo</CardTitle>
+            <Wallet className="h-4 w-4 text-blue-600 flex-shrink-0" />
           </CardHeader>
           <CardContent>
             <div
-              className={`text-2xl font-bold ${
+              className={`text-lg sm:text-2xl font-bold ${
                 (data?.saldo || 0) >= 0 ? "text-blue-600" : "text-red-600"
               }`}
             >
@@ -222,18 +222,18 @@ export function DashboardTab() {
       {/* Meses do Ano */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle>Meses de {anoAtual}</CardTitle>
-            <div className="flex items-center gap-4 text-xs">
-              <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <CardTitle className="text-base sm:text-lg">Meses de {anoAtual}</CardTitle>
+            <div className="flex items-center gap-2 sm:gap-4 text-xs flex-wrap">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 <span className="text-gray-600">Rendas</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <span className="text-gray-600">Gastos</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 sm:gap-2">
                 <div className="w-3 h-3 rounded-full bg-purple-500"></div>
                 <span className="text-gray-600">Poupança</span>
               </div>
@@ -241,7 +241,7 @@ export function DashboardTab() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
             {mesesResumo.map((mes) => {
               const isMesAtual = mes.mes === mesAtual;
               const isSelecionado = mes.mes === mesSelecionado;
@@ -250,7 +250,7 @@ export function DashboardTab() {
                 <button
                   key={mes.mes}
                   onClick={() => handleMesClick(mes.mes)}
-                  className={`relative p-4 rounded-lg border-2 transition-all text-left hover:shadow-md ${
+                  className={`relative p-3 sm:p-4 rounded-lg border-2 transition-all text-left hover:shadow-md ${
                     isSelecionado
                       ? "border-blue-500 bg-blue-50"
                       : isMesAtual
@@ -258,49 +258,51 @@ export function DashboardTab() {
                       : "border-gray-200 hover:border-gray-300"
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span
-                      className={`font-bold text-sm ${
-                        isSelecionado || isMesAtual ? "text-blue-600" : "text-gray-700"
-                      }`}
-                    >
-                      {mes.mesNome}
-                    </span>
-                    {isMesAtual && (
-                      <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">
-                        Atual
+                  <div className="flex items-start justify-between mb-2 sm:mb-3 gap-2">
+                    <div className="flex flex-col gap-1">
+                      <span
+                        className={`font-bold text-xs sm:text-sm ${
+                          isSelecionado || isMesAtual ? "text-blue-600" : "text-gray-700"
+                        }`}
+                      >
+                        {mes.mesNome}
                       </span>
-                    )}
+                      {isMesAtual && (
+                        <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full w-fit">
+                          Atual
+                        </span>
+                      )}
+                    </div>
                     <ChevronRight
-                      className={`h-4 w-4 ${
+                      className={`h-4 w-4 flex-shrink-0 mt-0.5 ${
                         isSelecionado ? "text-blue-600" : "text-gray-400"
                       }`}
                     />
                   </div>
 
-                  <div className="space-y-2 text-xs">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Renda:</span>
-                      <span className="font-semibold text-green-600">
+                  <div className="space-y-1.5 sm:space-y-2 text-xs">
+                    <div className="flex justify-between items-center gap-2">
+                      <span className="text-gray-600 flex-shrink-0">Renda:</span>
+                      <span className="font-semibold text-green-600 truncate">
                         {formatCurrency(mes.renda)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Gastos:</span>
-                      <span className="font-semibold text-red-600">
+                    <div className="flex justify-between items-center gap-2">
+                      <span className="text-gray-600 flex-shrink-0">Gastos:</span>
+                      <span className="font-semibold text-red-600 truncate">
                         {formatCurrency(mes.gastos)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600">Poupança:</span>
-                      <span className="font-semibold text-purple-600">
+                    <div className="flex justify-between items-center gap-2">
+                      <span className="text-gray-600 flex-shrink-0">Poupança:</span>
+                      <span className="font-semibold text-purple-600 truncate">
                         {formatCurrency(mes.poupanca)}
                       </span>
                     </div>
-                    <div className="pt-2 border-t border-gray-200 flex justify-between items-center">
-                      <span className="text-gray-700 font-medium">Saldo:</span>
+                    <div className="pt-1.5 sm:pt-2 border-t border-gray-200 flex justify-between items-center gap-2">
+                      <span className="text-gray-700 font-medium flex-shrink-0">Saldo:</span>
                       <span
-                        className={`font-bold ${
+                        className={`font-bold truncate ${
                           mes.saldo >= 0 ? "text-blue-600" : "text-red-600"
                         }`}
                       >

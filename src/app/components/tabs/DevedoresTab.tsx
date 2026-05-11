@@ -560,32 +560,35 @@ export function DevedoresTab() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold">Pessoas & Dívidas</h2>
-          <p className="text-sm text-gray-500 mt-1">{formatMonth(mesSelecionado)}</p>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xl sm:text-2xl font-bold truncate">Pessoas & Dívidas</h2>
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">{formatMonth(mesSelecionado)}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap w-full sm:w-auto">
           <button
             onClick={() => setShowPessoaForm(!showPessoaForm)}
-            className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium"
+            className="inline-flex items-center px-3 sm:px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium flex-shrink-0"
           >
-            <Plus className="h-4 w-4 mr-2" />
-            Nova Pessoa
+            <Plus className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Nova Pessoa</span>
+            <span className="sm:hidden text-xs">Pessoa</span>
           </button>
           <button
             onClick={() => setViewMode("allDividas")}
-            className="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 font-medium"
+            className="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 font-medium flex-shrink-0"
           >
-            Ver Todas as Dívidas
+            <span className="hidden sm:inline">Ver Todas as Dívidas</span>
+            <span className="sm:hidden text-xs">Todas</span>
           </button>
           <button
             onClick={toggleDividaForm}
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"
+            className="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex-shrink-0"
           >
-            <Plus className="h-4 w-4 mr-2" />
-            Nova Dívida
+            <Plus className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Nova Dívida</span>
+            <span className="sm:hidden text-xs">Dívida</span>
           </button>
         </div>
       </div>
@@ -684,7 +687,7 @@ export function DevedoresTab() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="valor_total">Valor Total</Label>
                   <Input
@@ -801,7 +804,7 @@ export function DevedoresTab() {
               </div>
 
               {dividaFormData.parcelado && (
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="total_parcelas">Total de Parcelas</Label>
                     <Input
@@ -847,9 +850,9 @@ export function DevedoresTab() {
                 </Label>
               </div>
 
-              <div className="flex gap-2">
-                <Button type="submit">Salvar</Button>
-                <Button type="button" variant="outline" onClick={toggleDividaForm}>
+              <div className="flex gap-2 flex-col sm:flex-row">
+                <Button type="submit" className="w-full sm:w-auto">Salvar</Button>
+                <Button type="button" variant="outline" onClick={toggleDividaForm} className="w-full sm:w-auto">
                   Cancelar
                 </Button>
               </div>
@@ -859,7 +862,7 @@ export function DevedoresTab() {
       )}
 
       {viewMode === "overview" && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {pessoas
             .filter((pessoa) => pessoa && pessoa.id && pessoa.nome)
             .map((pessoa) => {
@@ -1192,7 +1195,7 @@ export function DevedoresTab() {
                 onChange={(e) => setEditFormData({ ...editFormData, descricao: e.target.value })}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="edit-valor_total">
                   {dividaToEdit?.parcelado ? "Valor da Parcela" : "Valor Total"}
@@ -1309,7 +1312,7 @@ export function DevedoresTab() {
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="edit-total_parcelas">Total de Parcelas</Label>
                 <Input

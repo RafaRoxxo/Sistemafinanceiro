@@ -127,11 +127,11 @@ export function LoginPage({ onNavigateToRegister }: LoginPageProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-3 sm:p-4">
       <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">Bem-vindo</CardTitle>
-          <CardDescription className="text-center">
+        <CardHeader className="space-y-1 px-4 sm:px-6">
+          <CardTitle className="text-xl sm:text-2xl font-bold text-center">Bem-vindo</CardTitle>
+          <CardDescription className="text-center text-sm">
             Entre na sua conta para continuar
           </CardDescription>
         </CardHeader>

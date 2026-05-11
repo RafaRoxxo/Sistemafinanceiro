@@ -351,18 +351,18 @@ export function GastosGeraisTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold">Gastos Gerais</h2>
-          <p className="text-sm text-gray-500 mt-1">{formatMonth(mesSelecionado)}</p>
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xl sm:text-2xl font-bold truncate">Gastos Gerais</h2>
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">{formatMonth(mesSelecionado)}</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium"
+          className="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 font-medium flex-shrink-0"
         >
-          <Plus className="h-4 w-4 mr-2" />
-          Novo Gasto
+          <Plus className="h-4 w-4 sm:mr-2" />
+          <span className="hidden sm:inline">Novo Gasto</span>
         </button>
       </div>
 
@@ -414,7 +414,7 @@ export function GastosGeraisTab() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="valor">Valor</Label>
                   <Input
@@ -506,9 +506,9 @@ export function GastosGeraisTab() {
                 </Label>
               </div>
 
-              <div className="flex gap-2">
-                <Button type="submit">Salvar</Button>
-                <Button type="button" variant="outline" onClick={() => setShowForm(false)}>
+              <div className="flex gap-2 flex-col sm:flex-row">
+                <Button type="submit" className="w-full sm:w-auto">Salvar</Button>
+                <Button type="button" variant="outline" onClick={() => setShowForm(false)} className="w-full sm:w-auto">
                   Cancelar
                 </Button>
               </div>
@@ -539,56 +539,60 @@ export function GastosGeraisTab() {
                   return (
                     <div
                       key={gasto.id}
-                      className={`p-4 rounded-md border-2 ${
+                      className={`p-3 sm:p-4 rounded-md border-2 ${
                         todasPagas ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
                       }`}
                     >
-                      <div className="flex justify-between items-start">
-                        <div className="flex items-start gap-3 flex-1">
+                      <div className="flex flex-col sm:flex-row sm:justify-between gap-3">
+                        <div className="flex items-start gap-2 sm:gap-3 flex-1 min-w-0">
                           {todasPagas ? (
-                            <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+                            <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
                           ) : (
-                            <IconComponent className="h-5 w-5 text-red-600 mt-0.5" />
+                            <IconComponent className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
                           )}
-                          <div className="flex-1">
-                            <p className="font-medium">
-                              {gasto.descricao}
-                              {gasto.recorrente && (
-                                <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">
-                                  Recorrente
-                                </span>
-                              )}
-                              {todasPagas && (
-                                <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
-                                  Pago
-                                </span>
-                              )}
-                              {pessoas.length > 0 && (
-                                <span className="ml-2 text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full">
-                                  Dividido ({pessoas.length} pessoa{pessoas.length > 1 ? 's' : ''})
-                                </span>
-                              )}
-                            </p>
-                            <p className="text-sm text-gray-600">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                              <p className="font-medium text-sm sm:text-base">
+                                {gasto.descricao}
+                              </p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {gasto.recorrente && (
+                                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap">
+                                    Recorrente
+                                  </span>
+                                )}
+                                {todasPagas && (
+                                  <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full whitespace-nowrap">
+                                    Pago
+                                  </span>
+                                )}
+                                {pessoas.length > 0 && (
+                                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full whitespace-nowrap">
+                                    Dividido ({pessoas.length})
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-600 mt-1">
                               {catInfo.label} •{" "}
                               {gasto.data
                                 ? new Date(gasto.data + "T00:00:00").toLocaleDateString("pt-BR")
                                 : "Data não definida"}
                             </p>
                             {pessoas.length > 0 && (
-                              <div className="mt-2 space-y-1 bg-white bg-opacity-60 rounded p-2">
+                              <div className="mt-2 space-y-1.5 bg-white bg-opacity-60 rounded p-2">
                                 <p className="text-xs font-medium text-gray-700">Divisão:</p>
                                 {pessoas.map((pd) => (
                                   <div
                                     key={pd.pessoa_id}
-                                    className="flex justify-between items-center text-sm"
+                                    className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1.5 text-xs sm:text-sm"
                                   >
-                                    <span className="text-gray-700">{getPessoaNome(pd.pessoa_id)}</span>
-                                    <div className="flex items-center gap-3">
-                                      <span className="font-medium">{formatCurrency(pd.valor_individual)}</span>
+                                    <span className="text-gray-700 font-medium">{getPessoaNome(pd.pessoa_id)}</span>
+                                    <div className="flex items-center justify-between xs:justify-end gap-2 sm:gap-3">
+                                      <span className="font-semibold">{formatCurrency(pd.valor_individual)}</span>
                                       <button
                                         onClick={() => handleMarcarPago(gasto.id, pd.pessoa_id, pd.pago)}
-                                        className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
+                                        className={`text-xs px-2 py-1 rounded-full font-medium transition-colors whitespace-nowrap ${
                                           pd.pago
                                             ? "bg-green-600 text-white hover:bg-green-700"
                                             : "bg-gray-300 text-gray-700 hover:bg-gray-400"
@@ -603,27 +607,29 @@ export function GastosGeraisTab() {
                             )}
                           </div>
                         </div>
-                        <div className="flex items-start gap-3 ml-3">
-                          <div className="text-right">
-                            <p className="text-lg font-semibold text-red-600">
+                        <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 sm:gap-3 flex-shrink-0">
+                          <div className="text-left sm:text-right">
+                            <p className="text-base sm:text-lg font-semibold text-red-600">
                               {formatCurrency(gasto.valor || 0)}
                             </p>
                             {pessoas.length > 0 && (
-                              <p className="text-xs text-gray-500 mt-1">
+                              <p className="text-xs text-gray-500 mt-0.5 sm:mt-1">
                                 Minha parte
                               </p>
                             )}
                           </div>
-                          <div className="flex gap-2">
+                          <div className="flex gap-1 sm:gap-2">
                             <button
                               onClick={() => handleEditClick(gasto)}
-                              className="text-blue-600 hover:text-blue-700 p-2 hover:bg-blue-50 rounded-md transition-colors"
+                              className="text-blue-600 hover:text-blue-700 p-1.5 sm:p-2 hover:bg-blue-50 rounded-md transition-colors"
+                              title="Editar"
                             >
                               <Edit className="h-4 w-4" />
                             </button>
                             <button
                               onClick={() => handleDeleteClick(gasto.id)}
-                              className="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-md transition-colors"
+                              className="text-red-600 hover:text-red-700 p-1.5 sm:p-2 hover:bg-red-50 rounded-md transition-colors"
+                              title="Excluir"
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>
@@ -695,7 +701,7 @@ export function GastosGeraisTab() {
                 onChange={(e) => setEditFormData({ ...editFormData, descricao: e.target.value })}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="edit-valor">Valor</Label>
                 <Input

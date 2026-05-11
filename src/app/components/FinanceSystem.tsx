@@ -132,44 +132,47 @@ export function FinanceSystem() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Sistema Financeiro</h1>
-            <p className="text-sm text-gray-600">Olá, {user?.nome}</p>
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center gap-2">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-lg sm:text-2xl font-bold text-gray-900 truncate">Sistema Financeiro</h1>
+            <p className="text-xs sm:text-sm text-gray-600 truncate">Olá, {user?.nome}</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={handleChangePasswordClick}
-              className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium"
+              className="inline-flex items-center px-2 sm:px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium"
+              title="Trocar Senha"
             >
-              <Key className="h-4 w-4 mr-2" />
-              Trocar Senha
+              <Key className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Trocar Senha</span>
             </button>
             <button
               onClick={logout}
-              className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium"
+              className="inline-flex items-center px-2 sm:px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 text-sm font-medium"
+              title="Sair"
             >
-              <LogOut className="h-4 w-4 mr-2" />
-              Sair
+              <LogOut className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Sair</span>
             </button>
             <button
               onClick={handleDeleteClick}
               disabled={isDeleting}
-              className="inline-flex items-center px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm font-medium disabled:opacity-50"
+              className="inline-flex items-center px-2 sm:px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 text-sm font-medium disabled:opacity-50"
+              title={isDeleting ? "Deletando..." : "Deletar Conta"}
             >
-              <Trash2 className="h-4 w-4 mr-2" />
-              {isDeleting ? "Deletando..." : "Deletar Conta"}
+              <Trash2 className="h-4 w-4 sm:mr-2" />
+              <span className="hidden md:inline">{isDeleting ? "Deletando..." : "Deletar Conta"}</span>
             </button>
           </div>
         </div>
 
-        <nav className="max-w-7xl mx-auto px-4">
-          <div className="flex space-x-1 border-b">
+        <nav className="max-w-7xl mx-auto px-3 sm:px-4">
+          <div className="flex space-x-1 border-b overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
-                className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab.id
                     ? "border-blue-600 text-blue-600"
                     : "border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300"
@@ -182,41 +185,41 @@ export function FinanceSystem() {
         </nav>
 
         {/* Navegação de Mês */}
-        <div className="max-w-7xl mx-auto px-4 py-3 bg-white border-t">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-3 bg-white border-t">
+          <div className="flex items-center justify-between gap-2">
             <button
               onClick={handleMesAnterior}
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              className="inline-flex items-center px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 flex-shrink-0"
             >
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Anterior
+              <ChevronLeft className="h-4 w-4 sm:mr-1" />
+              <span className="hidden sm:inline">Anterior</span>
             </button>
 
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-lg font-semibold text-gray-900">{formatMonth(mesSelecionado)}</span>
+            <div className="flex flex-col items-center gap-1 min-w-0 flex-1">
+              <span className="text-sm sm:text-lg font-semibold text-gray-900 truncate px-2 text-center">{formatMonth(mesSelecionado)}</span>
               {!isMesAtual && (
                 <button
                   onClick={handleMesAtual}
-                  className="inline-flex items-center px-3 py-1 text-xs font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100"
+                  className="inline-flex items-center px-2 sm:px-3 py-1 text-xs font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 whitespace-nowrap"
                 >
                   <Calendar className="h-3 w-3 mr-1" />
-                  Ir para mês atual
+                  <span className="hidden xs:inline">Ir para </span>mês atual
                 </button>
               )}
             </div>
 
             <button
               onClick={handleMesProximo}
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+              className="inline-flex items-center px-2 sm:px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 flex-shrink-0"
             >
-              Próximo
-              <ChevronRight className="h-4 w-4 ml-1" />
+              <span className="hidden sm:inline">Próximo</span>
+              <ChevronRight className="h-4 w-4 sm:ml-1" />
             </button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-6">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
         {activeTab === "dashboard" && <DashboardTab />}
         {activeTab === "rendas" && <RendasTab />}
         {activeTab === "gastos" && <GastosTab />}
