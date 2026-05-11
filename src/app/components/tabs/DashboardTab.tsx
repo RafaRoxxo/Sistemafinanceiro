@@ -1,8 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+
 import { api } from "../../../lib/api";
 import { useMes } from "../../../contexts/MesContext";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { TrendingUp, TrendingDown, Wallet, PiggyBank, ChevronRight } from "lucide-react";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
+
+import {
+  TrendingUp,
+  TrendingDown,
+  Wallet,
+  PiggyBank,
+  ChevronRight,
+} from "lucide-react";
 
 interface DashboardData {
   mes_referencia: string;
@@ -12,7 +30,10 @@ interface DashboardData {
   valor_guardado_mensal: number;
   meta_guardado_mensal: number;
   total_guardado: number;
-  gastos_por_cartao: Record<string, number>;
+  gastos_por_cartao: Record<
+    string,
+    number
+  >;
 }
 
 interface MesResumo {
@@ -24,176 +45,332 @@ interface MesResumo {
   saldo: number;
 }
 
-export function DashboardTab() {
-  const { mesSelecionado, setMesSelecionado } = useMes();
-  const [data, setData] = useState<DashboardData | null>(null);
-  const [mesesResumo, setMesesResumo] = useState<MesResumo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [mesAtual, setMesAtual] = useState(new Date().toISOString().substring(0, 7));
+const mesesNomes = [
+  "JAN",
+  "FEV",
+  "MAR",
+  "ABR",
+  "MAI",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SET",
+  "OUT",
+  "NOV",
+  "DEZ",
+];
 
-  const anoAtual = new Date().getFullYear();
+function formatCurrency(value = 0) {
+  return new Intl.NumberFormat(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL",
+    }
+  ).format(value);
+}
+
+function formatMonth(month: string) {
+  const [year, monthNum] =
+    month.split("-");
+
+  const date = new Date(
+    Number(year),
+    Number(monthNum) - 1
+  );
+
+  const formatted =
+    date.toLocaleDateString("pt-BR", {
+      month: "long",
+      year: "numeric",
+    });
+
+  return (
+    formatted.charAt(0).toUpperCase() +
+    formatted.slice(1)
+  );
+}
+
+function getCurrentMonth() {
+  return new Date()
+    .toISOString()
+    .substring(0, 7);
+}
+
+export function DashboardTab() {
+  const {
+    mesSelecionado,
+    setMesSelecionado,
+  } = useMes();
+
+  const [data, setData] =
+    useState<DashboardData | null>(null);
+
+  const [mesesResumo, setMesesResumo] =
+    useState<MesResumo[]>([]);
+
+  const [isLoading, setIsLoading] =
+    useState(true);
+
+  const [mesAtual, setMesAtual] =
+    useState(getCurrentMonth());
+
+  const anoAtual =
+    new Date().getFullYear();
 
   useEffect(() => {
-    loadDashboard(mesSelecionado);
+    loadDashboard();
     loadMesesResumo();
   }, [mesSelecionado]);
 
   useEffect(() => {
-    // Verifica a cada minuto se o mês mudou
     const interval = setInterval(() => {
-      const novoMes = new Date().toISOString().substring(0, 7);
-      if (novoMes !== mesAtual) {
-        setMesAtual(novoMes);
-      }
-    }, 60000); // 60 segundos
+      const novoMes =
+        getCurrentMonth();
 
-    return () => clearInterval(interval);
-  }, [mesAtual]);
+      setMesAtual((prev) =>
+        prev !== novoMes
+          ? novoMes
+          : prev
+      );
+    }, 60000);
 
-  const loadDashboard = async (mes: string) => {
+    return () =>
+      clearInterval(interval);
+  }, []);
+
+  async function loadDashboard() {
     try {
-      const response = await api.dashboard.get(mes);
-      setData(response.data as DashboardData);
+      setIsLoading(true);
+
+      const response =
+        await api.dashboard.get(
+          mesSelecionado
+        );
+
+      setData(
+        response.data as DashboardData
+      );
     } catch (error) {
-      console.error("Erro ao carregar dashboard:", error);
+      console.error(
+        "Erro ao carregar dashboard:",
+        error
+      );
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const loadMesesResumo = async () => {
-    const meses = [];
-    const mesesNomes = [
-      "JAN", "FEV", "MAR", "ABR", "MAI", "JUN",
-      "JUL", "AGO", "SET", "OUT", "NOV", "DEZ"
-    ];
-
-    for (let i = 0; i < 12; i++) {
-      const mes = `${anoAtual}-${String(i + 1).padStart(2, "0")}`;
-      try {
-        const response = await api.dashboard.get(mes);
-        const dados = response.data as DashboardData;
-
-        meses.push({
-          mes,
-          mesNome: mesesNomes[i],
-          renda: dados.total_renda || 0,
-          gastos: dados.total_gastos || 0,
-          poupanca: dados.valor_guardado_mensal || 0,
-          saldo: dados.saldo || 0,
-        });
-      } catch (error) {
-        meses.push({
-          mes,
-          mesNome: mesesNomes[i],
-          renda: 0,
-          gastos: 0,
-          poupanca: 0,
-          saldo: 0,
-        });
-      }
-    }
-
-    setMesesResumo(meses);
-  };
-
-  const handleMesClick = (mes: string) => {
-    setMesSelecionado(mes);
-    loadDashboard(mes);
-  };
-
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(value);
-  };
-
-  const formatMonth = (month: string) => {
-    const [year, monthNum] = month.split("-");
-    const date = new Date(parseInt(year), parseInt(monthNum) - 1);
-    const formatted = date.toLocaleDateString("pt-BR", { month: "long", year: "numeric" });
-    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
-  };
-
-  if (isLoading) {
-    return <div className="text-center py-8">Carregando...</div>;
   }
 
-  const mesAtualInfo = mesSelecionado === mesAtual;
-  const mesSelecionadoAnterior = mesSelecionado < mesAtual;
-  const mesSelecionadoPosterior = mesSelecionado > mesAtual;
+  async function loadMesesResumo() {
+    try {
+      const promises = Array.from(
+        { length: 12 },
+        (_, i) => {
+          const mes = `${anoAtual}-${String(
+            i + 1
+          ).padStart(2, "0")}`;
+
+          return api.dashboard
+            .get(mes)
+            .catch(() => ({
+              data: {
+                total_renda: 0,
+                total_gastos: 0,
+                valor_guardado_mensal: 0,
+                saldo: 0,
+              },
+            }));
+        }
+      );
+
+      const responses =
+        await Promise.all(promises);
+
+      const meses =
+        responses.map(
+          (response, i) => ({
+            mes: `${anoAtual}-${String(
+              i + 1
+            ).padStart(2, "0")}`,
+
+            mesNome: mesesNomes[i],
+
+            renda:
+              response.data
+                ?.total_renda || 0,
+
+            gastos:
+              response.data
+                ?.total_gastos || 0,
+
+            poupanca:
+              response.data
+                ?.valor_guardado_mensal ||
+              0,
+
+            saldo:
+              response.data?.saldo || 0,
+          })
+        );
+
+      setMesesResumo(meses);
+    } catch (error) {
+      console.error(
+        "Erro ao carregar meses:",
+        error
+      );
+    }
+  }
+
+  function handleMesClick(
+    mes: string
+  ) {
+    setMesSelecionado(mes);
+  }
+
+  const progressoMeta = useMemo(() => {
+    const poupanca =
+      data?.valor_guardado_mensal || 0;
+
+    const meta =
+      data?.meta_guardado_mensal || 0;
+
+    if (!meta) return 0;
+
+    return Math.min(
+      (poupanca / meta) * 100,
+      100
+    );
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <div className="text-center py-8">
+        Carregando...
+      </div>
+    );
+  }
+
+  const mesAtualInfo =
+    mesSelecionado === mesAtual;
+
+  const mesSelecionadoAnterior =
+    mesSelecionado < mesAtual;
+
+  const mesSelecionadoPosterior =
+    mesSelecionado > mesAtual;
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* Header com mês selecionado */}
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
-            {formatMonth(mesSelecionado)}
+            {formatMonth(
+              mesSelecionado
+            )}
           </h2>
+
           {mesAtualInfo && (
-            <p className="text-xs sm:text-sm text-blue-600 font-medium mt-1">Mês atual</p>
+            <p className="text-xs sm:text-sm text-blue-600 font-medium mt-1">
+              Mês atual
+            </p>
           )}
+
           {mesSelecionadoAnterior && (
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">Visualizando mês anterior</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
+              Visualizando mês anterior
+            </p>
           )}
+
           {mesSelecionadoPosterior && (
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">Visualizando mês seguinte</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
+              Visualizando mês seguinte
+            </p>
           )}
         </div>
       </div>
 
-      {/* Cards principais */}
       <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Total de Rendas</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Total de Rendas
+            </CardTitle>
+
             <TrendingUp className="h-4 w-4 text-green-600 flex-shrink-0" />
           </CardHeader>
+
           <CardContent>
             <div className="text-lg sm:text-2xl font-bold text-green-600">
-              {formatCurrency(data?.total_renda || 0)}
+              {formatCurrency(
+                data?.total_renda
+              )}
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Total de Gastos</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Total de Gastos
+            </CardTitle>
+
             <TrendingDown className="h-4 w-4 text-red-600 flex-shrink-0" />
           </CardHeader>
+
           <CardContent>
             <div className="text-lg sm:text-2xl font-bold text-red-600">
-              {formatCurrency(data?.total_gastos || 0)}
+              {formatCurrency(
+                data?.total_gastos
+              )}
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Poupança do Mês</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Poupança do Mês
+            </CardTitle>
+
             <PiggyBank className="h-4 w-4 text-purple-600 flex-shrink-0" />
           </CardHeader>
+
           <CardContent>
             <div className="text-lg sm:text-2xl font-bold text-purple-600">
-              {formatCurrency(data?.valor_guardado_mensal || 0)}
+              {formatCurrency(
+                data?.valor_guardado_mensal
+              )}
             </div>
-            {data?.meta_guardado_mensal > 0 && (
+
+            {(data?.meta_guardado_mensal ||
+              0) > 0 && (
               <div className="mt-2">
                 <div className="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Meta: {formatCurrency(data.meta_guardado_mensal)}</span>
-                  <span>{Math.round((data.valor_guardado_mensal / data.meta_guardado_mensal) * 100)}%</span>
+                  <span>
+                    Meta:{" "}
+                    {formatCurrency(
+                      data?.meta_guardado_mensal
+                    )}
+                  </span>
+
+                  <span>
+                    {Math.round(
+                      progressoMeta
+                    )}
+                    %
+                  </span>
                 </div>
+
                 <div className="w-full bg-gray-200 rounded-full h-1.5">
                   <div
                     className={`h-1.5 rounded-full ${
-                      (data.valor_guardado_mensal / data.meta_guardado_mensal) * 100 >= 100
+                      progressoMeta >= 100
                         ? "bg-green-600"
                         : "bg-purple-600"
                     }`}
                     style={{
-                      width: `${Math.min((data.valor_guardado_mensal / data.meta_guardado_mensal) * 100, 100)}%`,
+                      width: `${progressoMeta}%`,
                     }}
                   />
                 </div>
@@ -204,137 +381,28 @@ export function DashboardTab() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs sm:text-sm font-medium">Saldo</CardTitle>
+            <CardTitle className="text-xs sm:text-sm font-medium">
+              Saldo
+            </CardTitle>
+
             <Wallet className="h-4 w-4 text-blue-600 flex-shrink-0" />
           </CardHeader>
+
           <CardContent>
             <div
               className={`text-lg sm:text-2xl font-bold ${
-                (data?.saldo || 0) >= 0 ? "text-blue-600" : "text-red-600"
+                (data?.saldo || 0) >= 0
+                  ? "text-blue-600"
+                  : "text-red-600"
               }`}
             >
-              {formatCurrency(data?.saldo || 0)}
+              {formatCurrency(
+                data?.saldo
+              )}
             </div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Meses do Ano */}
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <CardTitle className="text-base sm:text-lg">Meses de {anoAtual}</CardTitle>
-            <div className="flex items-center gap-2 sm:gap-4 text-xs flex-wrap">
-              <div className="flex items-center gap-1 sm:gap-2">
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <span className="text-gray-600">Rendas</span>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <span className="text-gray-600">Gastos</span>
-              </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-                <span className="text-gray-600">Poupança</span>
-              </div>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
-            {mesesResumo.map((mes) => {
-              const isMesAtual = mes.mes === mesAtual;
-              const isSelecionado = mes.mes === mesSelecionado;
-
-              return (
-                <button
-                  key={mes.mes}
-                  onClick={() => handleMesClick(mes.mes)}
-                  className={`relative p-3 sm:p-4 rounded-lg border-2 transition-all text-left hover:shadow-md ${
-                    isSelecionado
-                      ? "border-blue-500 bg-blue-50"
-                      : isMesAtual
-                      ? "border-blue-300 bg-blue-50/50"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-2 sm:mb-3 gap-2">
-                    <div className="flex flex-col gap-1">
-                      <span
-                        className={`font-bold text-xs sm:text-sm ${
-                          isSelecionado || isMesAtual ? "text-blue-600" : "text-gray-700"
-                        }`}
-                      >
-                        {mes.mesNome}
-                      </span>
-                      {isMesAtual && (
-                        <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full w-fit">
-                          Atual
-                        </span>
-                      )}
-                    </div>
-                    <ChevronRight
-                      className={`h-4 w-4 flex-shrink-0 mt-0.5 ${
-                        isSelecionado ? "text-blue-600" : "text-gray-400"
-                      }`}
-                    />
-                  </div>
-
-                  <div className="space-y-1.5 sm:space-y-2 text-xs">
-                    <div className="flex justify-between items-center gap-2">
-                      <span className="text-gray-600 flex-shrink-0">Renda:</span>
-                      <span className="font-semibold text-green-600 truncate">
-                        {formatCurrency(mes.renda)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center gap-2">
-                      <span className="text-gray-600 flex-shrink-0">Gastos:</span>
-                      <span className="font-semibold text-red-600 truncate">
-                        {formatCurrency(mes.gastos)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center gap-2">
-                      <span className="text-gray-600 flex-shrink-0">Poupança:</span>
-                      <span className="font-semibold text-purple-600 truncate">
-                        {formatCurrency(mes.poupanca)}
-                      </span>
-                    </div>
-                    <div className="pt-1.5 sm:pt-2 border-t border-gray-200 flex justify-between items-center gap-2">
-                      <span className="text-gray-700 font-medium flex-shrink-0">Saldo:</span>
-                      <span
-                        className={`font-bold truncate ${
-                          mes.saldo >= 0 ? "text-blue-600" : "text-red-600"
-                        }`}
-                      >
-                        {formatCurrency(mes.saldo)}
-                      </span>
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Gastos por Cartão */}
-      {data && Object.keys(data.gastos_por_cartao).length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Gastos por Cartão - {formatMonth(mesSelecionado)}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {Object.entries(data.gastos_por_cartao).map(([cartao, valor]) => (
-                <div key={cartao} className="flex justify-between items-center">
-                  <span className="font-medium">{cartao}</span>
-                  <span className="text-lg font-semibold">{formatCurrency(valor)}</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }
