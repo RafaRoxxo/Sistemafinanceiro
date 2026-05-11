@@ -1,36 +1,73 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface MesContextType {
   mesSelecionado: string;
-  setMesSelecionado: (mes: string) => void;
+  setMesSelecionado: (
+    mes: string
+  ) => void;
 }
 
-const MesContext = createContext<MesContextType | undefined>(undefined);
+const MesContext = createContext<
+  MesContextType | undefined
+>(undefined);
 
-export function MesProvider({ children }: { children: React.ReactNode }) {
-  const [mesSelecionado, setMesSelecionado] = useState(() => {
-    return new Date().toISOString().substring(0, 7);
-  });
+function getCurrentMonth() {
+  return new Date()
+    .toISOString()
+    .substring(0, 7);
+}
+
+function getPreviousMinuteMonth() {
+  return new Date(
+    Date.now() - 60000
+  )
+    .toISOString()
+    .substring(0, 7);
+}
+
+export function MesProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [mesSelecionado, setMesSelecionado] =
+    useState<string>(getCurrentMonth);
 
   useEffect(() => {
-    // Verifica a cada minuto se o mês mudou
     const interval = setInterval(() => {
-      const mesAtualAgora = new Date().toISOString().substring(0, 7);
-      // Só atualiza automaticamente se o usuário estiver visualizando o mês que era atual
+      const mesAtual = getCurrentMonth();
+
       setMesSelecionado((mesAnterior) => {
-        const mesAnteriorEraAtual = mesAnterior === new Date(Date.now() - 60000).toISOString().substring(0, 7);
-        if (mesAnteriorEraAtual && mesAtualAgora !== mesAnterior) {
-          return mesAtualAgora;
+        const usuarioEstavaNoMesAtual =
+          mesAnterior ===
+          getPreviousMinuteMonth();
+
+        if (
+          usuarioEstavaNoMesAtual &&
+          mesAnterior !== mesAtual
+        ) {
+          return mesAtual;
         }
+
         return mesAnterior;
       });
-    }, 60000); // 60 segundos
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <MesContext.Provider value={{ mesSelecionado, setMesSelecionado }}>
+    <MesContext.Provider
+      value={{
+        mesSelecionado,
+        setMesSelecionado,
+      }}
+    >
       {children}
     </MesContext.Provider>
   );
@@ -38,8 +75,12 @@ export function MesProvider({ children }: { children: React.ReactNode }) {
 
 export function useMes() {
   const context = useContext(MesContext);
-  if (context === undefined) {
-    throw new Error("useMes must be used within a MesProvider");
+
+  if (!context) {
+    throw new Error(
+      "useMes must be used within a MesProvider"
+    );
   }
+
   return context;
 }
