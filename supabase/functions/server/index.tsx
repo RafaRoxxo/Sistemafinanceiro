@@ -196,7 +196,7 @@ app.post("/make-server-808cc1b6/auth/forgot-password", async (c) => {
             "Authorization": `Bearer ${RESEND_API_KEY}`,
           },
           body: JSON.stringify({
-            from: "Sistema Financeiro <noreply@sistema.com>",
+            from: "Sistema Financeiro <onboarding@resend.dev>",
             to: email,
             subject: "Redefinir sua senha",
             html: `
