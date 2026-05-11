@@ -186,32 +186,23 @@ export function DashboardTab() {
       const responses =
         await Promise.all(promises);
 
-      const meses =
-        responses.map(
-          (response, i) => ({
-            mes: `${anoAtual}-${String(
-              i + 1
-            ).padStart(2, "0")}`,
+      const meses = responses.map((response, i) => {
+       const dados = response.data as DashboardData;
 
-            mesNome: mesesNomes[i],
+      return {
+      mes: `${anoAtual}-${String(i + 1).padStart(2, "0")}`,
 
-            renda:
-              response.data
-                ?.total_renda || 0,
+      mesNome: mesesNomes[i],
 
-            gastos:
-              response.data
-                ?.total_gastos || 0,
+      renda: dados?.total_renda || 0,
 
-            poupanca:
-              response.data
-                ?.valor_guardado_mensal ||
-              0,
+      gastos: dados?.total_gastos || 0,
 
-            saldo:
-              response.data?.saldo || 0,
-          })
-        );
+      poupanca: dados?.valor_guardado_mensal || 0,
+
+      saldo: dados?.saldo || 0,
+    };
+  });
 
       setMesesResumo(meses);
     } catch (error) {
