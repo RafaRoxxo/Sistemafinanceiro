@@ -232,6 +232,17 @@ export const api = {
       }),
 
     list: () => fetchAPI("/pessoa"),
+    
+    update: (id: string, data: unknown) =>
+      fetchAPI(`/pessoa/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+      }),
+
+    delete: (id: string) =>
+      fetchAPI(`/pessoa/${id}`, {
+        method: "DELETE",
+      }),
   },
 
   divida: createCrud("/divida"),

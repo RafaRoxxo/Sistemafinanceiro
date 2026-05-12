@@ -71,6 +71,13 @@ export function DevedoresTab() {
   const [mePessoaId, setMePessoaId] = useState<string | null>(null);
   const [includeMeInDebt, setIncludeMeInDebt] = useState(false);
   const [includeMeInEdit, setIncludeMeInEdit] = useState(false);
+  
+  // Estados para editar/excluir pessoa
+  const [editPessoaDialogOpen, setEditPessoaDialogOpen] = useState(false);
+  const [deletePessoaDialogOpen, setDeletePessoaDialogOpen] = useState(false);
+  const [pessoaToEdit, setPessoaToEdit] = useState<Pessoa | null>(null);
+  const [pessoaToDelete, setPessoaToDelete] = useState<string | null>(null);
+  const [editPessoaNome, setEditPessoaNome] = useState("");
 
   const [pessoaFormData, setPessoaFormData] = useState({ nome: "" });
   const [dividaFormData, setDividaFormData] = useState({
@@ -86,6 +93,8 @@ export function DevedoresTab() {
     parcelado: false,
     total_parcelas: "1",
     parcela_atual: "1",
+    criar_parcelas_anteriores: true,
+    parcelas_anteriores_pagas: "perguntar" as "pagas" | "pendentes" | "perguntar",
   });
 
   const [editFormData, setEditFormData] = useState({
@@ -191,6 +200,53 @@ export function DevedoresTab() {
     }
   };
 
+  const handleEditPessoaClick = (pessoa: Pessoa) => {
+    setPessoaToEdit(pessoa);
+    setEditPessoaNome(pessoa.nome);
+    setEditPessoaDialogOpen(true);
+  };
+
+  const handleEditPessoaSubmit = async () => {
+    if (!pessoaToEdit) return;
+    
+    if (!editPessoaNome.trim()) {
+      toast.error("Nome é obrigatório");
+      return;
+    }
+
+    try {
+      await api.pessoa.update(pessoaToEdit.id, { nome: editPessoaNome });
+      toast.success("Pessoa atualizada com sucesso");
+      setEditPessoaDialogOpen(false);
+      setPessoaToEdit(null);
+      setEditPessoaNome("");
+      loadData();
+    } catch (error) {
+      console.error("Erro ao atualizar pessoa:", error);
+      toast.error("Erro ao atualizar pessoa");
+    }
+  };
+
+  const handleDeletePessoaClick = (pessoaId: string) => {
+    setPessoaToDelete(pessoaId);
+    setDeletePessoaDialogOpen(true);
+  };
+
+  const confirmDeletePessoa = async () => {
+    if (!pessoaToDelete) return;
+
+    try {
+      await api.pessoa.delete(pessoaToDelete);
+      toast.success("Pessoa excluída com sucesso");
+      setDeletePessoaDialogOpen(false);
+      setPessoaToDelete(null);
+      loadData();
+    } catch (error) {
+      console.error("Erro ao excluir pessoa:", error);
+      toast.error("Erro ao excluir pessoa");
+    }
+  };
+
   const handleDividaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -248,11 +304,19 @@ export function DevedoresTab() {
         parcelado: dividaFormData.parcelado,
         total_parcelas: dividaFormData.parcelado ? totalParcelas : 1,
         parcela_atual: dividaFormData.parcelado ? parcelaAtual : 1,
+        criar_parcelas_anteriores: dividaFormData.parcelado && parcelaAtual > 1 ? dividaFormData.criar_parcelas_anteriores : false,
+        parcelas_anteriores_pagas: dividaFormData.parcelas_anteriores_pagas === "pagas",
       });
 
+      const totalParcelasCriadas = dividaFormData.parcelado 
+        ? (dividaFormData.criar_parcelas_anteriores && parcelaAtual > 1 
+            ? totalParcelas 
+            : totalParcelas - parcelaAtual + 1)
+        : 1;
+      
       toast.success(
         dividaFormData.parcelado
-          ? `Dívida parcelada adicionada (${totalParcelas - parcelaAtual + 1} parcelas criadas)`
+          ? `Dívida parcelada adicionada (${totalParcelasCriadas} parcelas criadas)`
           : "Dívida adicionada com sucesso"
       );
       setDividaFormData({
@@ -268,6 +332,8 @@ export function DevedoresTab() {
         parcelado: false,
         total_parcelas: "1",
         parcela_atual: "1",
+        criar_parcelas_anteriores: true,
+        parcelas_anteriores_pagas: "perguntar",
       });
       setIncludeMeInDebt(false);
       setShowDividaForm(false);
@@ -508,7 +574,7 @@ export function DevedoresTab() {
     setSelectedPessoaId(null);
   };
 
-  // Visão por pessoa
+  // Visão por pessoa - FILTRADO PELO MÊS SELECIONADO
   const getDividasPorPessoa = () => {
     const resumo: Record<string, { total: number; pendente: number; pago: number; dividas: any[] }> = {};
 
@@ -521,7 +587,14 @@ export function DevedoresTab() {
       };
     });
 
-    dividas.forEach((divida) => {
+    // Filtrar dívidas pelo mês selecionado
+    const dividasDoMes = dividas.filter((divida) => {
+      if (!divida.data) return false;
+      const mesDivida = divida.data.substring(0, 7); // "YYYY-MM"
+      return mesDivida === mesSelecionado;
+    });
+
+    dividasDoMes.forEach((divida) => {
       // Garantir que divida.pessoas existe e é um array
       if (!divida.pessoas || !Array.isArray(divida.pessoas)) {
         return;
@@ -549,11 +622,19 @@ export function DevedoresTab() {
 
   const dividasPorPessoa = getDividasPorPessoa();
   const selectedPessoa = pessoas.find((p) => p.id === selectedPessoaId);
+  
+  // Filtrar dívidas pelo mês selecionado primeiro
+  const dividasDoMes = dividas.filter((divida) => {
+    if (!divida.data) return false;
+    const mesDivida = divida.data.substring(0, 7);
+    return mesDivida === mesSelecionado;
+  });
+  
   const dividasFiltradas = selectedPessoaId
-    ? dividas.filter((divida) =>
+    ? dividasDoMes.filter((divida) =>
         divida.pessoas && divida.pessoas.some((p) => p.pessoa_id === selectedPessoaId)
       )
-    : dividas;
+    : dividasDoMes;
 
   if (isLoading) {
     return <div className="text-center py-8">Carregando...</div>;
@@ -804,34 +885,88 @@ export function DevedoresTab() {
               </div>
 
               {dividaFormData.parcelado && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="total_parcelas">Total de Parcelas</Label>
-                    <Input
-                      id="total_parcelas"
-                      type="number"
-                      min="2"
-                      max="48"
-                      value={dividaFormData.total_parcelas}
-                      onChange={(e) => setDividaFormData({ ...dividaFormData, total_parcelas: e.target.value })}
-                      required
-                    />
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="total_parcelas">Total de Parcelas</Label>
+                      <Input
+                        id="total_parcelas"
+                        type="number"
+                        min="2"
+                        max="48"
+                        value={dividaFormData.total_parcelas}
+                        onChange={(e) => setDividaFormData({ ...dividaFormData, total_parcelas: e.target.value })}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="parcela_atual">Qual parcela é essa?</Label>
+                      <Input
+                        id="parcela_atual"
+                        type="number"
+                        min="1"
+                        max={dividaFormData.total_parcelas}
+                        value={dividaFormData.parcela_atual}
+                        onChange={(e) => setDividaFormData({ ...dividaFormData, parcela_atual: e.target.value })}
+                        required
+                      />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Número da parcela que vence em {formatMonth(mesSelecionado)}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <Label htmlFor="parcela_atual">Qual parcela é essa?</Label>
-                    <Input
-                      id="parcela_atual"
-                      type="number"
-                      min="1"
-                      max={dividaFormData.total_parcelas}
-                      value={dividaFormData.parcela_atual}
-                      onChange={(e) => setDividaFormData({ ...dividaFormData, parcela_atual: e.target.value })}
-                      required
-                    />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Número da parcela que vence em {formatMonth(mesSelecionado)}
-                    </p>
-                  </div>
+                  
+                  {parseInt(dividaFormData.parcela_atual) > 1 && (
+                    <div className="p-4 bg-amber-50 border border-amber-200 rounded-md space-y-3">
+                      <p className="text-sm text-amber-800 font-medium">
+                        Esta é a parcela {dividaFormData.parcela_atual} de {dividaFormData.total_parcelas}. 
+                        Deseja criar as {parseInt(dividaFormData.parcela_atual) - 1} parcela(s) anterior(es)?
+                      </p>
+                      
+                      <div className="flex items-center gap-2">
+                        <input
+                          id="criar_parcelas_anteriores"
+                          type="checkbox"
+                          checked={dividaFormData.criar_parcelas_anteriores}
+                          onChange={(e) => setDividaFormData({ ...dividaFormData, criar_parcelas_anteriores: e.target.checked })}
+                          className="h-4 w-4 rounded border-amber-300 text-amber-600 focus:ring-amber-500"
+                        />
+                        <Label htmlFor="criar_parcelas_anteriores" className="cursor-pointer text-sm text-amber-800">
+                          Criar parcelas anteriores (1 até {parseInt(dividaFormData.parcela_atual) - 1})
+                        </Label>
+                      </div>
+
+                      {dividaFormData.criar_parcelas_anteriores && (
+                        <div className="space-y-2">
+                          <Label className="text-sm text-amber-800">Como marcar as parcelas anteriores?</Label>
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setDividaFormData({ ...dividaFormData, parcelas_anteriores_pagas: "pagas" })}
+                              className={`flex-1 px-3 py-2 text-sm rounded-md transition-colors ${
+                                dividaFormData.parcelas_anteriores_pagas === "pagas"
+                                  ? "bg-green-600 text-white"
+                                  : "bg-green-100 text-green-800 hover:bg-green-200"
+                              }`}
+                            >
+                              Já foram pagas
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setDividaFormData({ ...dividaFormData, parcelas_anteriores_pagas: "pendentes" })}
+                              className={`flex-1 px-3 py-2 text-sm rounded-md transition-colors ${
+                                dividaFormData.parcelas_anteriores_pagas === "pendentes"
+                                  ? "bg-red-600 text-white"
+                                  : "bg-red-100 text-red-800 hover:bg-red-200"
+                              }`}
+                            >
+                              Ainda pendentes
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -866,41 +1001,65 @@ export function DevedoresTab() {
           {pessoas
             .filter((pessoa) => pessoa && pessoa.id && pessoa.nome)
             .map((pessoa) => {
-              const resumo = dividasPorPessoa[pessoa.id];
-              if (!resumo || resumo.dividas.length === 0) return null;
+              const resumo = dividasPorPessoa[pessoa.id] || { total: 0, pendente: 0, pago: 0, dividas: [] };
+              const temDividas = resumo.dividas.length > 0;
 
               return (
                 <Card
                   key={pessoa.id}
-                  className="cursor-pointer hover:shadow-lg transition-shadow"
+                  className={`cursor-pointer hover:shadow-lg transition-shadow ${!temDividas ? "opacity-70" : ""}`}
                   onClick={() => handlePessoaClick(pessoa.id)}
                 >
-                  <CardHeader>
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="flex items-center gap-2">
                       <User className="h-5 w-5" />
                       {getPessoaNome(pessoa.id)}
                     </CardTitle>
+                    {pessoa.nome !== "Eu" && (
+                      <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
+                        <button
+                          onClick={() => handleEditPessoaClick(pessoa)}
+                          className="text-blue-600 hover:text-blue-700 p-1 hover:bg-blue-100 rounded-md transition-colors"
+                          title="Editar pessoa"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDeletePessoaClick(pessoa.id)}
+                          className="text-red-600 hover:text-red-700 p-1 hover:bg-red-100 rounded-md transition-colors"
+                          title="Excluir pessoa"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    )}
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-3">
-                      <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-md">
-                        <div>
-                          <p className="text-xs text-gray-600">Total</p>
-                          <p className="font-bold text-blue-600">{formatCurrency(resumo.total)}</p>
+                    {temDividas ? (
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-md">
+                          <div>
+                            <p className="text-xs text-gray-600">Total</p>
+                            <p className="font-bold text-blue-600">{formatCurrency(resumo.total)}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-600">Pago</p>
+                            <p className="font-bold text-green-600">{formatCurrency(resumo.pago)}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-gray-600">Pendente</p>
+                            <p className="font-bold text-red-600">{formatCurrency(resumo.pendente)}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-xs text-gray-600">Pago</p>
-                          <p className="font-bold text-green-600">{formatCurrency(resumo.pago)}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-600">Pendente</p>
-                          <p className="font-bold text-red-600">{formatCurrency(resumo.pendente)}</p>
-                        </div>
+                        <p className="text-sm text-gray-600 text-center">
+                          {resumo.dividas.length} {resumo.dividas.length === 1 ? "dívida" : "dívidas"}
+                        </p>
                       </div>
-                      <p className="text-sm text-gray-600 text-center">
-                        {resumo.dividas.length} {resumo.dividas.length === 1 ? "dívida" : "dívidas"}
-                      </p>
-                    </div>
+                    ) : (
+                      <div className="text-center py-4">
+                        <p className="text-sm text-gray-500">Sem dívidas neste mês</p>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               );
@@ -1046,11 +1205,11 @@ export function DevedoresTab() {
             <CardTitle>Todas as Dívidas - {formatMonth(mesSelecionado)}</CardTitle>
           </CardHeader>
           <CardContent>
-            {dividas.length === 0 ? (
-              <p className="text-gray-500 text-center py-4">Nenhuma dívida cadastrada</p>
+            {dividasDoMes.length === 0 ? (
+              <p className="text-gray-500 text-center py-4">Nenhuma dívida neste mês</p>
             ) : (
               <div className="space-y-3">
-                {dividas
+                {dividasDoMes
                   .filter((divida) => divida && divida.id)
                   .map((divida) => {
                     const pessoas = divida.pessoas || [];
@@ -1420,6 +1579,58 @@ export function DevedoresTab() {
             </Button>
             <Button variant="destructive" onClick={confirmDelete}>
               Deletar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog para editar pessoa */}
+      <Dialog open={editPessoaDialogOpen} onOpenChange={setEditPessoaDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Editar Pessoa</DialogTitle>
+            <DialogDescription>
+              Altere o nome da pessoa abaixo.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div>
+              <Label htmlFor="edit-pessoa-nome">Nome</Label>
+              <Input
+                id="edit-pessoa-nome"
+                type="text"
+                placeholder="Nome da pessoa"
+                value={editPessoaNome}
+                onChange={(e) => setEditPessoaNome(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditPessoaDialogOpen(false)}>
+              Cancelar
+            </Button>
+            <Button onClick={handleEditPessoaSubmit}>
+              Salvar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Dialog para excluir pessoa */}
+      <Dialog open={deletePessoaDialogOpen} onOpenChange={setDeletePessoaDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirmar exclusão</DialogTitle>
+            <DialogDescription>
+              Tem certeza que deseja excluir esta pessoa? Esta ação não pode ser desfeita.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeletePessoaDialogOpen(false)}>
+              Cancelar
+            </Button>
+            <Button variant="destructive" onClick={confirmDeletePessoa}>
+              Excluir
             </Button>
           </DialogFooter>
         </DialogContent>

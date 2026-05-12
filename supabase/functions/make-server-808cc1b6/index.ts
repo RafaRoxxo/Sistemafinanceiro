@@ -984,6 +984,72 @@ app.get("/make-server-808cc1b6/pessoa", authMiddleware, async (c) => {
   }
 });
 
+app.put("/make-server-808cc1b6/pessoa/:id", authMiddleware, async (c) => {
+  try {
+    const userId = c.get("userId");
+    const id = c.req.param("id");
+    const data = await c.req.json();
+
+    const existing = await kv.get(`pessoa:${userId}:${id}`);
+    if (!existing) {
+      return c.json({ error: "Pessoa não encontrada" }, 404);
+    }
+
+    // Não permitir editar a pessoa "Eu"
+    if (existing.nome === "Eu") {
+      return c.json({ error: "Não é possível editar a pessoa 'Eu'" }, 400);
+    }
+
+    const updated = {
+      ...existing,
+      nome: data.nome ?? existing.nome,
+    };
+
+    await kv.set(`pessoa:${userId}:${id}`, updated);
+
+    return c.json({ success: true, data: updated });
+  } catch (error) {
+    console.log("Erro ao atualizar pessoa:", error);
+    return c.json({ error: "Erro ao atualizar pessoa" }, 500);
+  }
+});
+
+app.delete("/make-server-808cc1b6/pessoa/:id", authMiddleware, async (c) => {
+  try {
+    const userId = c.get("userId");
+    const id = c.req.param("id");
+
+    const existing = await kv.get(`pessoa:${userId}:${id}`);
+    if (!existing) {
+      return c.json({ error: "Pessoa não encontrada" }, 404);
+    }
+
+    // Não permitir excluir a pessoa "Eu"
+    if (existing.nome === "Eu") {
+      return c.json({ error: "Não é possível excluir a pessoa 'Eu'" }, 400);
+    }
+
+    // Verificar se há dívidas vinculadas
+    const dividas = await kv.getByPrefix(`divida:${userId}:`);
+    const dividasVinculadas = dividas.filter((d) => 
+      d.pessoas && d.pessoas.some((p: any) => p.pessoa_id === id)
+    );
+
+    if (dividasVinculadas.length > 0) {
+      return c.json({ 
+        error: `Esta pessoa possui ${dividasVinculadas.length} dívida(s) vinculada(s). Exclua as dívidas primeiro.` 
+      }, 400);
+    }
+
+    await kv.del(`pessoa:${userId}:${id}`);
+
+    return c.json({ success: true, message: "Pessoa excluída com sucesso" });
+  } catch (error) {
+    console.log("Erro ao excluir pessoa:", error);
+    return c.json({ error: "Erro ao excluir pessoa" }, 500);
+  }
+});
+
 // ==================== DÍVIDA ====================
 
 app.post("/make-server-808cc1b6/divida", authMiddleware, async (c) => {
