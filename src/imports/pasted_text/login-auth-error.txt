@@ -1,0 +1,607 @@
+Requisição: POST https://ikhynelmjichndpeyklx.supabase.co/functions/v1/make-server-808cc1b6/auth/login
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Headers completos: {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlraHluZWxtamljaG5kcGV5a2x4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5ODMyNDQsImV4cCI6MjA5MzU1OTI0NH0.ztMRfNOMGnbJ1kCg_ZFQhszdK20rDAMXP7Ms_8qgRrU"
+}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Authorization header completo: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlraHluZWxtamljaG5kcGV5a2x4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5ODMyNDQsImV4cCI6MjA5MzU1OTI0NH0.ztMRfNOMGnbJ1kCg_ZFQhszdK20rDAMXP7Ms_8qgRrU
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Tipo: Bearer
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlraHluZWxtamljaG5kcGV5a2x4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5ODMyNDQsImV4cCI6MjA5MzU1OTI0NH0.ztMRfNOMGnbJ1kCg_ZFQhszdK20rDAMXP7Ms_8qgRrU
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Body: {"email":"rafaroxo@icloud.com","senha":"468040"}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 ✅ Status: 200 
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 ✅ Resposta JSON: {success: true, message: 'Login realizado com sucesso', token: 'simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTF…HAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token', user: {…}}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔐 Resposta do login: {success: true, message: 'Login realizado com sucesso', token: 'simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTF…HAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token', user: {…}}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔐 Salvando token no localStorage: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔐 Token salvo. Verificando: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 📊 Carregando dashboard...
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 📊 Token no localStorage: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTF...
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Requisição: GET https://ikhynelmjichndpeyklx.supabase.co/functions/v1/make-server-808cc1b6/dashboard
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Headers completos: {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token"
+}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Authorization header completo: Bearer simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Tipo: Bearer
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Token: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 🔵 Body: undefined
+api.ts:49  GET https://ikhynelmjichndpeyklx.supabase.co/functions/v1/make-server-808cc1b6/dashboard 401 (Unauthorized)
+fetchAPI @ api.ts:49
+(anonymous) @ api.ts:108
+(anonymous) @ DashboardPage.tsx:44
+(anonymous) @ DashboardPage.tsx:37
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+hN @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SL @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+b3 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ sonner.js?v=31fd5046:910
+setTimeout
+(anonymous) @ sonner.js?v=31fd5046:909
+(anonymous) @ sonner.js?v=31fd5046:131
+Observer.publish @ sonner.js?v=31fd5046:131
+Observer.addToast @ sonner.js?v=31fd5046:134
+Observer.create @ sonner.js?v=31fd5046:171
+Observer.success @ sonner.js?v=31fd5046:211
+(anonymous) @ LoginPage.tsx:31
+await in (anonymous)
+y @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+ik @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+iz @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+i$ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dP @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dM @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dk @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+iC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dj @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+lR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lv @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25Understand this error
+dashboard:1  Failed to load resource: the server responded with a status of 401 ()Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 ✅ Status: 401 
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 ✅ Resposta JSON: {code: 'UNAUTHORIZED_INVALID_JWT_FORMAT', message: 'Invalid JWT'}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17 ❌ Erro do servidor: Erro HTTP 401: 
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+error @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+fetchAPI @ api.ts:70
+await in fetchAPI
+(anonymous) @ api.ts:108
+(anonymous) @ DashboardPage.tsx:44
+(anonymous) @ DashboardPage.tsx:37
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+hN @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SL @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+b3 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ sonner.js?v=31fd5046:910
+setTimeout
+(anonymous) @ sonner.js?v=31fd5046:909
+(anonymous) @ sonner.js?v=31fd5046:131
+Observer.publish @ sonner.js?v=31fd5046:131
+Observer.addToast @ sonner.js?v=31fd5046:134
+Observer.create @ sonner.js?v=31fd5046:171
+Observer.success @ sonner.js?v=31fd5046:211
+(anonymous) @ LoginPage.tsx:31
+await in (anonymous)
+y @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+ik @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+iz @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+i$ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dP @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dM @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dk @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+iC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dj @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+lR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lv @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17 ❌ Erro completo: Error: Erro HTTP 401: 
+    at fetchAPI (api.ts:71:13)
+    at async loadDashboard (DashboardPage.tsx:44:24)
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+error @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+fetchAPI @ api.ts:80
+await in fetchAPI
+(anonymous) @ api.ts:108
+(anonymous) @ DashboardPage.tsx:44
+(anonymous) @ DashboardPage.tsx:37
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+hN @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SL @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+b3 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ sonner.js?v=31fd5046:910
+setTimeout
+(anonymous) @ sonner.js?v=31fd5046:909
+(anonymous) @ sonner.js?v=31fd5046:131
+Observer.publish @ sonner.js?v=31fd5046:131
+Observer.addToast @ sonner.js?v=31fd5046:134
+Observer.create @ sonner.js?v=31fd5046:171
+Observer.success @ sonner.js?v=31fd5046:211
+(anonymous) @ LoginPage.tsx:31
+await in (anonymous)
+y @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+ik @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+iz @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+i$ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dP @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dM @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dk @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+iC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dj @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+lR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lv @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17 ❌ Erro ao carregar dashboard: Error: Erro HTTP 401: 
+    at fetchAPI (api.ts:71:13)
+    at async loadDashboard (DashboardPage.tsx:44:24)
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+error @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+(anonymous) @ DashboardPage.tsx:48
+await in (anonymous)
+(anonymous) @ DashboardPage.tsx:37
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+hN @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SL @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+b3 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ sonner.js?v=31fd5046:910
+setTimeout
+(anonymous) @ sonner.js?v=31fd5046:909
+(anonymous) @ sonner.js?v=31fd5046:131
+Observer.publish @ sonner.js?v=31fd5046:131
+Observer.addToast @ sonner.js?v=31fd5046:134
+Observer.create @ sonner.js?v=31fd5046:171
+Observer.success @ sonner.js?v=31fd5046:211
+(anonymous) @ LoginPage.tsx:31
+await in (anonymous)
+y @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+ik @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+iz @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+i$ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dP @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dM @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+dk @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+iC @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+dj @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+lR @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25
+lv @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:25Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65 ❌ Erro 401 - fazendo logout...
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 📊 Carregando dashboard...
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 📊 Token no localStorage: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTF...
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Requisição: GET https://ikhynelmjichndpeyklx.supabase.co/functions/v1/make-server-808cc1b6/dashboard
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Headers completos: {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token"
+}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Authorization header completo: Bearer simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Tipo: Bearer
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Token: simple.eyJ1c2VySWQiOiI4ZmE2MWE5MS00MmIyLTRkOWItOTFhNC1lZjFkZjg4NGY4MDMiLCJleHAiOjE3Nzg2MTE1NTgsImlhdCI6MTc3ODAwNjc1OH0=.token
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 🔵 Body: undefined
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106  GET https://ikhynelmjichndpeyklx.supabase.co/functions/v1/make-server-808cc1b6/dashboard 401 (Unauthorized)
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106
+fetchAPI @ api.ts:25
+get @ api.ts:72
+loadDashboard @ DashboardPage.tsx:50
+(anonymous) @ DashboardPage.tsx:44
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+V @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+B @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+el @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+z @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+t.exports.unstable_scheduleCallback @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+Ih @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+Sy @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S_ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+I8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+bx.render.bL.render @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+u8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:133
+await in u8
+snapshotDOMToPNG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:1175
+await in snapshotDOMToPNG
+o @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+t.onmessage @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+postMessage
+s @ 2142-3cf9584725289a96.min.js.br:1221
+trackMessage @ 2142-3cf9584725289a96.min.js.br:1221
+sendMessage @ 2142-3cf9584725289a96.min.js.br:1221
+callWithinSandbox @ 2142-3cf9584725289a96.min.js.br:1221
+snapshotDOMToPNG @ 2142-3cf9584725289a96.min.js.br:1395
+snapshot @ 2142-3cf9584725289a96.min.js.br:1395
+await in snapshot
+performWebSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+await in performWebSnapshot
+performCodeNodeSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+(anonymous) @ 2520-d5565efa296bf87a.min.js.br:3
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+setTimeout
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+markCodeNodesDirtyWithOptions @ 2520-d5565efa296bf87a.min.js.br:3
+markCodeNodesDirtyWithOptions @ 1120-88791e99fbf113f5.min.js.br:3
+_SitesJsBindings_markCodeNodesDirtyWithOptions @ compiled_wasm.js.br:2
+$wasm-function[26784] @ compiled_wasm.wasm.br:0x19008fc
+$wasm-function[30925] @ compiled_wasm.wasm.br:0x1b3c61c
+$wasm-function[16860] @ compiled_wasm.wasm.br:0xe23b74
+$wasm-function[39805] @ compiled_wasm.wasm.br:0x2077625
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+onFrame @ 2142-3cf9584725289a96.min.js.br:184
+_P @ 2142-3cf9584725289a96.min.js.br:181
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+requestAnimationFrame
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+_R @ 2142-3cf9584725289a96.min.js.br:181
+s @ 2142-3cf9584725289a96.min.js.br:347
+requestAnimationFrame @ 2142-3cf9584725289a96.min.js.br:184
+_Async_requestAnimationFrame @ compiled_wasm.js.br:2
+$wasm-function[1905] @ compiled_wasm.wasm.br:0x41716
+$wasm-function[16617] @ compiled_wasm.wasm.br:0xddab4d
+$wasm-function[43707] @ compiled_wasm.wasm.br:0x2461990
+$wasm-function[42864] @ compiled_wasm.wasm.br:0x238cfcc
+$wasm-function[3798] @ compiled_wasm.wasm.br:0x18e607
+$wasm-function[26348] @ compiled_wasm.wasm.br:0x1892714
+$wasm-function[3810] @ compiled_wasm.wasm.br:0x195d01
+$wasm-function[38477] @ compiled_wasm.wasm.br:0x1f7c623
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+forceRerenderCodeNodePreview @ 2142-3cf9584725289a96.min.js.br:1450
+i @ 6542-64a39afd283a42d8.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+measureDuration @ 2142-3cf9584725289a96.min.js.br:1636
+commit @ 5084-af80211f37ab9fb3.min.js.br:3
+await in commit
+c @ 4296-41b0045db9b6ff2e.min.js.br:64Understand this error
+dashboard:1  Failed to load resource: the server responded with a status of 401 ()Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ✅ Status: 401 
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ✅ Resposta JSON: {code: 'UNAUTHORIZED_INVALID_JWT_FORMAT', message: 'Invalid JWT'}
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ❌ Erro do servidor: Erro HTTP 401: 
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+fetchAPI @ api.ts:42
+await in fetchAPI
+get @ api.ts:72
+loadDashboard @ DashboardPage.tsx:50
+(anonymous) @ DashboardPage.tsx:44
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+V @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+B @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+el @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+z @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+t.exports.unstable_scheduleCallback @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+Ih @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+Sy @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S_ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+I8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+bx.render.bL.render @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+u8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:133
+await in u8
+snapshotDOMToPNG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:1175
+await in snapshotDOMToPNG
+o @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+t.onmessage @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+postMessage
+s @ 2142-3cf9584725289a96.min.js.br:1221
+trackMessage @ 2142-3cf9584725289a96.min.js.br:1221
+sendMessage @ 2142-3cf9584725289a96.min.js.br:1221
+callWithinSandbox @ 2142-3cf9584725289a96.min.js.br:1221
+snapshotDOMToPNG @ 2142-3cf9584725289a96.min.js.br:1395
+snapshot @ 2142-3cf9584725289a96.min.js.br:1395
+await in snapshot
+performWebSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+await in performWebSnapshot
+performCodeNodeSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+(anonymous) @ 2520-d5565efa296bf87a.min.js.br:3
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+setTimeout
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+markCodeNodesDirtyWithOptions @ 2520-d5565efa296bf87a.min.js.br:3
+markCodeNodesDirtyWithOptions @ 1120-88791e99fbf113f5.min.js.br:3
+_SitesJsBindings_markCodeNodesDirtyWithOptions @ compiled_wasm.js.br:2
+$wasm-function[26784] @ compiled_wasm.wasm.br:0x19008fc
+$wasm-function[30925] @ compiled_wasm.wasm.br:0x1b3c61c
+$wasm-function[16860] @ compiled_wasm.wasm.br:0xe23b74
+$wasm-function[39805] @ compiled_wasm.wasm.br:0x2077625
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+onFrame @ 2142-3cf9584725289a96.min.js.br:184
+_P @ 2142-3cf9584725289a96.min.js.br:181
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+requestAnimationFrame
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+_R @ 2142-3cf9584725289a96.min.js.br:181
+s @ 2142-3cf9584725289a96.min.js.br:347
+requestAnimationFrame @ 2142-3cf9584725289a96.min.js.br:184
+_Async_requestAnimationFrame @ compiled_wasm.js.br:2
+$wasm-function[1905] @ compiled_wasm.wasm.br:0x41716
+$wasm-function[16617] @ compiled_wasm.wasm.br:0xddab4d
+$wasm-function[43707] @ compiled_wasm.wasm.br:0x2461990
+$wasm-function[42864] @ compiled_wasm.wasm.br:0x238cfcc
+$wasm-function[3798] @ compiled_wasm.wasm.br:0x18e607
+$wasm-function[26348] @ compiled_wasm.wasm.br:0x1892714
+$wasm-function[3810] @ compiled_wasm.wasm.br:0x195d01
+$wasm-function[38477] @ compiled_wasm.wasm.br:0x1f7c623
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+forceRerenderCodeNodePreview @ 2142-3cf9584725289a96.min.js.br:1450
+i @ 6542-64a39afd283a42d8.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+measureDuration @ 2142-3cf9584725289a96.min.js.br:1636
+commit @ 5084-af80211f37ab9fb3.min.js.br:3
+await in commit
+c @ 4296-41b0045db9b6ff2e.min.js.br:64Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ❌ Erro completo: Error: Erro HTTP 401: 
+    at fetchAPI (api.ts:43:13)
+    at async loadDashboard (DashboardPage.tsx:50:24)
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+fetchAPI @ api.ts:51
+await in fetchAPI
+get @ api.ts:72
+loadDashboard @ DashboardPage.tsx:50
+(anonymous) @ DashboardPage.tsx:44
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+V @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+B @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+el @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+z @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+t.exports.unstable_scheduleCallback @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+Ih @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+Sy @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S_ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+I8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+bx.render.bL.render @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+u8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:133
+await in u8
+snapshotDOMToPNG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:1175
+await in snapshotDOMToPNG
+o @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+t.onmessage @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+postMessage
+s @ 2142-3cf9584725289a96.min.js.br:1221
+trackMessage @ 2142-3cf9584725289a96.min.js.br:1221
+sendMessage @ 2142-3cf9584725289a96.min.js.br:1221
+callWithinSandbox @ 2142-3cf9584725289a96.min.js.br:1221
+snapshotDOMToPNG @ 2142-3cf9584725289a96.min.js.br:1395
+snapshot @ 2142-3cf9584725289a96.min.js.br:1395
+await in snapshot
+performWebSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+await in performWebSnapshot
+performCodeNodeSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+(anonymous) @ 2520-d5565efa296bf87a.min.js.br:3
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+setTimeout
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+markCodeNodesDirtyWithOptions @ 2520-d5565efa296bf87a.min.js.br:3
+markCodeNodesDirtyWithOptions @ 1120-88791e99fbf113f5.min.js.br:3
+_SitesJsBindings_markCodeNodesDirtyWithOptions @ compiled_wasm.js.br:2
+$wasm-function[26784] @ compiled_wasm.wasm.br:0x19008fc
+$wasm-function[30925] @ compiled_wasm.wasm.br:0x1b3c61c
+$wasm-function[16860] @ compiled_wasm.wasm.br:0xe23b74
+$wasm-function[39805] @ compiled_wasm.wasm.br:0x2077625
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+onFrame @ 2142-3cf9584725289a96.min.js.br:184
+_P @ 2142-3cf9584725289a96.min.js.br:181
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+requestAnimationFrame
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+_R @ 2142-3cf9584725289a96.min.js.br:181
+s @ 2142-3cf9584725289a96.min.js.br:347
+requestAnimationFrame @ 2142-3cf9584725289a96.min.js.br:184
+_Async_requestAnimationFrame @ compiled_wasm.js.br:2
+$wasm-function[1905] @ compiled_wasm.wasm.br:0x41716
+$wasm-function[16617] @ compiled_wasm.wasm.br:0xddab4d
+$wasm-function[43707] @ compiled_wasm.wasm.br:0x2461990
+$wasm-function[42864] @ compiled_wasm.wasm.br:0x238cfcc
+$wasm-function[3798] @ compiled_wasm.wasm.br:0x18e607
+$wasm-function[26348] @ compiled_wasm.wasm.br:0x1892714
+$wasm-function[3810] @ compiled_wasm.wasm.br:0x195d01
+$wasm-function[38477] @ compiled_wasm.wasm.br:0x1f7c623
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+forceRerenderCodeNodePreview @ 2142-3cf9584725289a96.min.js.br:1450
+i @ 6542-64a39afd283a42d8.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+measureDuration @ 2142-3cf9584725289a96.min.js.br:1636
+commit @ 5084-af80211f37ab9fb3.min.js.br:3
+await in commit
+c @ 4296-41b0045db9b6ff2e.min.js.br:64Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ❌ Erro ao carregar dashboard: Error: Erro HTTP 401: 
+    at fetchAPI (api.ts:43:13)
+    at async loadDashboard (DashboardPage.tsx:50:24)
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106
+r @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:17
+loadDashboard @ DashboardPage.tsx:54
+await in loadDashboard
+(anonymous) @ DashboardPage.tsx:44
+TO @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T7 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T6 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+T4 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S1 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+SQ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+(anonymous) @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+V @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+B @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+eo @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+postMessage
+t @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+el @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+z @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:61
+t.exports.unstable_scheduleCallback @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+Ih @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+Sy @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+S_ @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+I8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+bx.render.bL.render @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:37
+u8 @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:133
+await in u8
+snapshotDOMToPNG @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:1175
+await in snapshotDOMToPNG
+o @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+t.onmessage @ code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:65
+postMessage
+s @ 2142-3cf9584725289a96.min.js.br:1221
+trackMessage @ 2142-3cf9584725289a96.min.js.br:1221
+sendMessage @ 2142-3cf9584725289a96.min.js.br:1221
+callWithinSandbox @ 2142-3cf9584725289a96.min.js.br:1221
+snapshotDOMToPNG @ 2142-3cf9584725289a96.min.js.br:1395
+snapshot @ 2142-3cf9584725289a96.min.js.br:1395
+await in snapshot
+performWebSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+await in performWebSnapshot
+performCodeNodeSnapshot @ 2520-d5565efa296bf87a.min.js.br:3
+(anonymous) @ 2520-d5565efa296bf87a.min.js.br:3
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+setTimeout
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+markCodeNodesDirtyWithOptions @ 2520-d5565efa296bf87a.min.js.br:3
+markCodeNodesDirtyWithOptions @ 1120-88791e99fbf113f5.min.js.br:3
+_SitesJsBindings_markCodeNodesDirtyWithOptions @ compiled_wasm.js.br:2
+$wasm-function[26784] @ compiled_wasm.wasm.br:0x19008fc
+$wasm-function[30925] @ compiled_wasm.wasm.br:0x1b3c61c
+$wasm-function[16860] @ compiled_wasm.wasm.br:0xe23b74
+$wasm-function[39805] @ compiled_wasm.wasm.br:0x2077625
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+onFrame @ 2142-3cf9584725289a96.min.js.br:184
+_P @ 2142-3cf9584725289a96.min.js.br:181
+u @ vendor-core-229ba1ea832d24ba.min.js.br:54
+requestAnimationFrame
+(anonymous) @ vendor-core-229ba1ea832d24ba.min.js.br:63
+_R @ 2142-3cf9584725289a96.min.js.br:181
+s @ 2142-3cf9584725289a96.min.js.br:347
+requestAnimationFrame @ 2142-3cf9584725289a96.min.js.br:184
+_Async_requestAnimationFrame @ compiled_wasm.js.br:2
+$wasm-function[1905] @ compiled_wasm.wasm.br:0x41716
+$wasm-function[16617] @ compiled_wasm.wasm.br:0xddab4d
+$wasm-function[43707] @ compiled_wasm.wasm.br:0x2461990
+$wasm-function[42864] @ compiled_wasm.wasm.br:0x238cfcc
+$wasm-function[3798] @ compiled_wasm.wasm.br:0x18e607
+$wasm-function[26348] @ compiled_wasm.wasm.br:0x1892714
+$wasm-function[3810] @ compiled_wasm.wasm.br:0x195d01
+$wasm-function[38477] @ compiled_wasm.wasm.br:0x1f7c623
+(anonymous) @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+_wrapCppCall @ compiled_wasm.js.br:2
+(anonymous) @ compiled_wasm.js.br:2
+forceRerenderCodeNodePreview @ 2142-3cf9584725289a96.min.js.br:1450
+i @ 6542-64a39afd283a42d8.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+(anonymous) @ 5084-af80211f37ab9fb3.min.js.br:3
+measureDuration @ 2142-3cf9584725289a96.min.js.br:1636
+commit @ 5084-af80211f37ab9fb3.min.js.br:3
+await in commit
+c @ 4296-41b0045db9b6ff2e.min.js.br:64Understand this error
+code_components_preview_iframe-0bc9b557ba71c0b0.min.js.br:106 ❌ Erro 401 - fazendo logout...

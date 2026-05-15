@@ -1,0 +1,4 @@
+2.0.0
+Created new /parcela-v2 endpoint to bypass cache
+Uses kv.mdel for batch deletion
+Updated: 2026-05-14T14:15:00
